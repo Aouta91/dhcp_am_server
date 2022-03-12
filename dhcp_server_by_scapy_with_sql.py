@@ -2,12 +2,11 @@
     example of using DHCP server that allows you to get the ip address
 """
 import logging
-import pytest
 from time import sleep
 
-from ktt.libs.dhcp.DHCP_scapy import DhcpAmAsThread
-from ktt.libs.packet_crafter.packet_craft import get_random_mac, \
-    send_dhcp_discover
+
+from dhcp_byscapy import DhcpAmAsThread
+from packet_craft import get_random_mac, send_dhcp_discover
 
 DHCP_WORK_TIME_IN_SECONDS = 100000
 

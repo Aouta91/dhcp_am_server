@@ -18,7 +18,6 @@ from scapy.layers.l2 import Ether, ARP
 from scapy.packet import fuzz, Packet
 from scapy.sendrecv import sendp
 from scapy.volatile import RandInt, RandMAC
-from scapy.compat import raw
 
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 

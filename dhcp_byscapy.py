@@ -22,22 +22,17 @@ from threading import Thread, Event
 from argparse import ArgumentParser
 
 from scapy.layers.dhcp import BOOTP_am, DHCP
-from scapy.layers.l2 import Ether
-from scapy.packet import fuzz, Packet, Raw
-from scapy.sendrecv import sendp
+
 from scapy.utils import atol, itom, ltoa
 import scapy.modules.six as six
 from scapy.base_classes import Net
 
-from scapy.layers.inet import IP, UDP, TCP
-from scapy.packet import fuzz
-from scapy.sendrecv import sendp
-from scapy.volatile import RandInt, RandMAC
+from scapy.layers.inet import IP
 from scapy.compat import raw
 from scapy.config import conf
 from scapy.data import ETH_P_ALL
 
-from ktt.libs.packet_crafter.payloads import get_fuzz_dhcp_layer_set1, get_fuzz_dhcp_layer_gen_set
+from ktt.libs.packet_crafter.payloads import get_fuzz_dhcp_layer_gen_set # TODO: take method
 
 try:
     from collections.abc import Iterable

@@ -2,7 +2,7 @@
 DHCP server by scapy who can remember DHCP replyes
 # Overview 
 This DHCP server using DHCP_am server by scapy. Beside DHCP_am server DHCP_am_as_THREAD can store DHCP replies in SQL Lite database.
-#Requirements
+# Requirements
 For run DHCP_am_as_THREAD need install scapy
 ```shell
 pip install scapy
@@ -14,7 +14,7 @@ For sniffing traffic:
 ```sh
   sudo   apt -y install tcpdump
 ```
-##Run without sudo (not must)
+## Run without sudo (not must)
 Find exec files for python и tcpdump 
 ```sh
   which python3
@@ -30,10 +30,10 @@ Allow open sockets under 1024 port:
 ```sh
   sudo setcap cap_net_raw,cap_net_admin,cap_net_bind_service,cap_net_broadcast=+eip /usr/bin/python3.8
 ```
-##Refs
+## Refs
 [link for install Scapy](https://scapy.readthedocs.io/en/latest/installation.html#installing-scapy-v2-x)
 [Базовая статья по работе со scapy]: https://stackoverflow.com/questions/36215201/python-scapy-sniff-without-root
-#Using
+# Using
 For run DHCP_am_as_THREAD need init examplare of DHCP_am class
 ```python3
     test_dhcp = DhcpAmAsThread(iface="ens37", domain='kostest.local',
@@ -63,7 +63,7 @@ Stop DHCP server:
 ```python3
     test_dhcp.stop()
 ```
-#example
+# example
 Example of using and template store in "dhcp_server_by_scapy_with_sql.py".
 ```python3
 import logging
