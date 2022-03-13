@@ -24,7 +24,7 @@ from scapy.config import conf
 from scapy.layers.dhcp import DHCP, BOOTP
 from scapy.layers.inet import IP, UDP, TCP
 from scapy.layers.l2 import Ether, ARP
-from scapy.packet import fuzz, Packet
+from scapy.packet import fuzz
 from scapy.sendrecv import sendp
 from scapy.volatile import RandInt, RandMAC
 
@@ -244,7 +244,7 @@ def send_dhcp_request_fuzzing(client_mac, client_ip, server_ip, iface=None, debu
           verbose=1 if debug else 0)
 
 
-def send_dhcp_release(client_mac, client_ip, server_mac, server_ip, iface=None, debug=False):
+def send_dhcp_release(client_mac, client_ip, server_mac, server_ip, iface=None, debug=False): # pylint: disable=too-many-arguments
     """
     todo: documentation
     """
@@ -264,7 +264,7 @@ def send_dhcp_release(client_mac, client_ip, server_mac, server_ip, iface=None, 
           verbose=1 if debug else 0)
 
 
-def send_dhcp_release_fuzzing(client_mac, client_ip, server_mac, server_ip, iface=None, debug=False):
+def send_dhcp_release_fuzzing(client_mac, client_ip, server_mac, server_ip, iface=None):
     """
     todo: documentation
     """
