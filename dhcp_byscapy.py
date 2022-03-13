@@ -18,6 +18,10 @@ from threading import Thread, Event
 # pylint: disable=useless-object-inheritance
 # pylint: disable=too-many-instance-attributes
 # pylint: disable=invalid-name
+# pylint: disable=consider-using-from-import
+# pylint: disable=deprecated-class
+# pylint: disable=bad-super-call
+# pylint: disable=consider-using-f-string
 
 from argparse import ArgumentParser
 
