@@ -56,8 +56,8 @@ In log will print mac address of DHCP client:
 ```
 Get IP by mac in real time:
 ```python3    
-    ip_kisg = test_dhcp.get_macs(requested_mac=clients_mac)
-    logging.info("got ip %s of client by mac  %s" % (ip_kisg, clients_mac))
+    clients_ip = test_dhcp.get_macs(requested_mac=clients_mac)
+    logging.info("got ip %s of client by mac  %s" % (clients_ip, clients_mac))
 ```
 Stop DHCP server:
 ```python3
@@ -92,8 +92,8 @@ def test_dhcp_example():
     sleep(5)
     send_dhcp_discover(iface="ens37", client_mac=clients_mac)
     sleep(DHCP_WORK_TIME_IN_SECONDS)
-    ip_kisg = test_dhcp.get_macs(requested_mac=clients_mac)
-    logging.info("got ip %s of client by mac  %s" % (ip_kisg, clients_mac))
+    clients_ip = test_dhcp.get_macs(requested_mac=clients_mac)
+    logging.info("got ip %s of client by mac  %s" % (clients_ip, clients_mac))
     sleep(1)
     test_dhcp.stop()
 
