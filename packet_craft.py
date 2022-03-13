@@ -4,6 +4,15 @@
     For import all methods from scapy:
     from scapy.all import *
 """
+# pylint: disable=import-error
+# pylint: disable=logging-not-lazy
+# pylint: disable=too-few-public-methods
+# pylint: disable=line-too-long
+# pylint: disable=pointless-string-statement
+# pylint: disable=attribute-defined-outside-init
+# pylint: disable=useless-object-inheritance
+# pylint: disable=too-many-instance-attributes
+# pylint: disable=invalid-name
 import logging
 import os
 import random
