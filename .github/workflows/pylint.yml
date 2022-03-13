@@ -21,4 +21,5 @@ jobs:
 
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py') || exit 0
+        pylint $(git ls-files '*.py') --fail-under=9
+#        pylint $(git ls-files '*.py') --fail-under=9  || exit 0
