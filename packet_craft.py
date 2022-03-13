@@ -113,14 +113,14 @@ def send_DHCP_request_from_test_host_by_self_mac(iface=None, **kwargs):
     if iface is None:
         iface = conf.iface
     fam, hw = get_if_raw_hwaddr(iface)
-
+    print(f"fam is {fam}, hw is {hw}")
     sendp(Ether(dst="ff:ff:ff:ff:ff:ff") / IP(src="0.0.0.0", dst="255.255.255.255") / UDP(sport=68,
                                                                                           dport=67) /  # noqa: E501
           BOOTP(chaddr=hw, xid=RandInt()) / DHCP(options=[("message-type", "discover"), "end"]), iface=iface,
           **kwargs)  # noqa: E501
 
 
-def send_DHCP_request_from_test_host_with_custom_mac(iface=None, custom_mac=None, **kwargs):
+def send_DHCP_request_from_test_host_with_custom_mac(iface=None, custom_mac=None):
     """
     Send a DHCP discover request and return the answer redefine by scapy dhcp_request(iface)
     """
@@ -303,6 +303,7 @@ def _get_mac_by_iface(iface="wlp2s0"):
     :returns str:
     """
     fam, hw = get_if_raw_hwaddr(iface)
+    print(f"fam is {fam}, hw is {hw}")
     return ':'.join('%02x' % b for b in hw)
 
 
